@@ -413,7 +413,10 @@ const viewMySchedule = tool({
     }
 
     // Parse all course meetings and organize by day
-    const dayMap: Record<string, Array<{ time: string; course: string; title: string }>> = {
+    const dayMap: Record<
+      string,
+      Array<{ time: string; course: string; title: string }>
+    > = {
       Monday: [],
       Tuesday: [],
       Wednesday: [],
