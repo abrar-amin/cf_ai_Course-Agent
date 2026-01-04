@@ -1,28 +1,20 @@
--- Cornell Courses Database Schema
-
 CREATE TABLE IF NOT EXISTS courses (
-  -- Use Cornell's ID as primary key
-  id TEXT PRIMARY KEY, -- e.g., "AAS-2100-101-4743"
+  id TEXT PRIMARY KEY, 
 
-  -- Course identifiers
-  subject TEXT NOT NULL, -- e.g., "AAS"
-  catalog_nbr TEXT NOT NULL, -- e.g., "2100"
+  subject TEXT NOT NULL, 
+  catalog_nbr TEXT NOT NULL, 
   title TEXT NOT NULL,
-  section TEXT NOT NULL, -- e.g., "101"
+  section TEXT NOT NULL, 
   class_nbr INTEGER NOT NULL,
 
-  -- Course type and status
   component TEXT, -- SEM, LEC, DIS, etc.
   status TEXT, -- C (Closed), O (Open), etc.
   credits INTEGER,
 
-  -- Description and content
   description TEXT,
 
-  -- Meeting times
   meetings TEXT, -- JSON array of meeting time strings
 
-  -- Instructor info  instructors TEXT, -- JSON array of instructor names
 
   prerequisites TEXT,
   restrictions TEXT,
