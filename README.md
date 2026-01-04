@@ -4,6 +4,12 @@ An AI-powered course scheduling assistant for Cornell University students. Built
 
 Access at: https://courseagent.abraramin.dev
 
+<img width="383" height="786" alt="image" src="https://github.com/user-attachments/assets/29290a0d-e809-4a98-9228-7c099bd84182" />
+<img width="383" height="548" alt="image" src="https://github.com/user-attachments/assets/d2092dc5-e27f-4dfc-abcf-5fbdcf58e5f9" />
+<img width="383" height="779" alt="image" src="https://github.com/user-attachments/assets/f201edff-3daa-49b5-9c66-8cc5c8d71970" />
+
+
+
 
 ## Features
 
