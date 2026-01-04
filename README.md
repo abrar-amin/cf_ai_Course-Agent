@@ -2,7 +2,7 @@
 
 An AI-powered course scheduling assistant for Cornell University students. Built with Cloudflare Workers, D1, Vectorize, and Workers AI.
 
-Access at: `https://courseagent.abraramin.dev`
+Access at: https://courseagent.abraramin.dev
 
 
 ## Features
