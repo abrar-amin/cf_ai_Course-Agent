@@ -17,7 +17,7 @@ Access at: https://courseagent.abraramin.dev
 ## Features
 
 - **Semantic Course Search** - Natural language search powered by Cloudflare Vectorize embeddings
-- **Visual Calendar** - Interactive SVG schedule visualization uploaded to tempfile.org
+- **Visual Calendar** -  Schedule visualization 
 - **Conflict Detection** - Automatic detection of time conflicts between courses
 - **Advanced Filtering** - Search by subject, credits, instructor, distribution requirements, and more
 - **AI Chat Interface** - Natural conversation with GPT-4 for course recommendations
