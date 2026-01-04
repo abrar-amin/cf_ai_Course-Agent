@@ -146,3 +146,24 @@ dist
 .dev.vars*
 !.dev.vars.example
 !.env.example
+
+# Local database files (for development/testing)
+*.db
+*.sqlite
+*.sqlite3
+local.db
+
+# Data dumps and test data
+*_sample.json
+flattened_*.json
+test_data.json
+
+# Temporary/test files
+*.tmp
+*.temp
+hello.txt
+test.txt
+
+# Scripts that are user-specific
+check-duplicates.cjs
+count-components.cjs
