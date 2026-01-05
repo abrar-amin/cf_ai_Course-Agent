@@ -69,8 +69,22 @@ export default function Chat() {
     setTheme(newTheme);
   };
 
+  const [userId] = useState(() => {
+    let id = localStorage.getItem("userId");
+    if (!id) {
+      id = crypto.randomUUID();
+      localStorage.setItem("userId", id);
+      console.log("Generated new user ID:", id);
+    } else {
+      console.log("Using existing user ID:", id);
+    }
+    return id;
+  });
+
   const agent = useAgent({
-    agent: "chat"
+    // Pass userId to route to user-specific Durable Object
+    agent: "chat",
+    name: userId  // 'name' parameter specifies the DO instance
   });
 
   const [agentInput, setAgentInput] = useState("");
