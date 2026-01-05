@@ -282,7 +282,7 @@ const getCourseDetails = tool({
         return `Course ${courseId} not found.`;
       }
 
-      return course;
+      return removeCourseEmbeddings([course])[0];
     }
 
     // If subject and catalogNbr provided, get all sections
@@ -300,7 +300,7 @@ const getCourseDetails = tool({
       return {
         course: `${subject} ${catalogNbr}`,
         totalSections: sections.results.length,
-        sections: sections.results
+        sections: removeCourseEmbeddings(sections.results)
       };
     }
 
@@ -530,17 +530,28 @@ const checkScheduleConflicts = tool({
 const removeCourseFromSchedule = tool({
   description: "Remove a course from the user's schedule",
   inputSchema: z.object({
-    courseId: z.string().describe("The course ID to remove")
+    courseId: z
+      .string()
+      .describe("Subject and catalog number in format 'CS-2110'")
   }),
   execute: async ({ courseId }) => {
     const { agent } = getCurrentAgent<Chat>();
     const env = agent!.getEnv();
     const userId = agent!.getUserId();
 
+    const parts = courseId.split("-");
+    const subject = parts[0];
+    const catalogNbr = parts[1];
+
     const result = await env.DB.prepare(
-      "DELETE FROM user_schedules WHERE user_id = ? AND course_id = ?"
+      `DELETE FROM user_schedules
+       WHERE user_id = ?
+       AND course_id IN (
+         SELECT id FROM courses
+         WHERE subject = ? AND catalog_nbr = ?
+       )`
     )
-      .bind(userId, courseId)
+      .bind(userId, subject, catalogNbr)
       .run();
 
     if (result.meta.changes === 0) {

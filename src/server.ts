@@ -18,7 +18,7 @@ import { processToolCalls, cleanupMessages } from "./utils";
 import { tools, executions } from "./tools";
 // import { env } from "cloudflare:workers";
 
-const model = openai("gpt-4o-2024-11-20");
+const model = openai("gpt-4o-mini");
 // Cloudflare AI Gateway
 // const openai = createOpenAI({
 //   apiKey: env.OPENAI_API_KEY,
@@ -98,16 +98,27 @@ export class Chat extends AIChatAgent<Env> {
           system: `You are a Cornell course scheduling assistant. You help students find and organize their class schedules.
 
 You have access to the complete Cornell course catalog and can:
-- Search for courses using natural language queries (e.g., "find machine learning classes")
-- Get detailed course information (times, instructors, prerequisites, etc.)
+- Search for courses using natural language queries (e.g., "find machine learning classes") using searchCourses and getCourseDetails tools
+- Get detailed course information (times, instructors, prerequisites, etc.) using searchCourses and getCourseDetails tools
 - Help students build their schedules
 - Check for time conflicts between courses
 - Manage and view their saved schedules
 
+CHOOSING THE RIGHT SEARCH TOOL:
+- Use advancedCourseSearch (NOT searchCourses) when users ask about:
+  * Distribution requirements (e.g., "GLC-AS", "MQR-AS", "CA-AG")
+  * Special attributes like FWS (First-Year Writing Seminar)
+  * Specific filters: subject, credits, day of week, instructor, catalog number ranges
+  * Example: "show me FWS courses" → use advancedCourseSearch with distributionReq parameter
+  * Example: "find MQR-AS courses on Tuesdays" → use advancedCourseSearch with distributionReq and dayOfWeek
+- Use searchCourses for natural language/semantic queries:
+  * Example: "find machine learning classes" → use searchCourses
+  * Example: "courses about philosophy" → use searchCourses
+
 IMPORTANT INSTRUCTIONS:
 - CRITICAL: NEVER hallucinate, invent, or make up course information. ONLY provide course details that come directly from the searchCourses or getCourseDetails tools. If you cannot find a course through these tools, clearly state that it doesn't exist in the catalog or cannot be found - do NOT create fictional course data.
-- ALWAYS verify course information using the search tools before providing any course details (times, instructors, descriptions, etc.)
 - ALWAYS call viewMySchedule when the user asks about their schedule in ANY form, including: "what classes am I taking", "show my schedule", "what courses do I have", "view my schedule", "my schedule", "what's in my schedule", etc. NEVER answer schedule questions from memory - ALWAYS call the tool.
+- ALWAYS verify course information using the search tools before providing any course details (times, instructors, descriptions, etc.)
 - CRITICAL: When a tool returns markdown images in the format ![text](url), you MUST preserve this EXACT syntax in your response. DO NOT convert images to clickable links or rephrase them. Copy the markdown image syntax EXACTLY as provided.
 - Always be helpful and proactive in suggesting courses that match student interests
 - Use conversation context to understand which courses the student is referring to
@@ -155,7 +166,7 @@ ${getSchedulePrompt({ date: new Date() })}
               onFinish as unknown as StreamTextOnFinishCallback<typeof allTools>
             )(result);
           },
-          stopWhen: stepCountIs(10)
+          stopWhen: stepCountIs(50)
         });
 
         writer.merge(result.toUIMessageStream());
