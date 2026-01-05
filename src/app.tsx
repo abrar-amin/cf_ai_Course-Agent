@@ -204,9 +204,12 @@ export default function Chat() {
                   <div className="bg-[#F48120]/10 text-[#F48120] rounded-full p-3 inline-flex">
                     <RobotIcon size={24} />
                   </div>
-                  <h3 className="font-semibold text-lg">Welcome to Cornell Course Scheduler</h3>
+                  <h3 className="font-semibold text-lg">
+                    Welcome to Cornell Course Scheduler
+                  </h3>
                   <p className="text-muted-foreground text-sm">
-                    I can help you find courses and build your schedule. Try asking:
+                    I can help you find courses and build your schedule. Try
+                    asking:
                   </p>
                   <ul className="text-sm text-left space-y-2">
                     <li className="flex items-center gap-2">

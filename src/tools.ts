@@ -191,7 +191,7 @@ const advancedCourseSearch = tool({
       }
 
       if (distributionReq) {
-        // Since Cornell's API does not have FWS in the attributes field, we check to see if the course title has FWS in it. 
+        // Since Cornell's API does not have FWS in the attributes field, we check to see if the course title has FWS in it.
         if (distributionReq.toUpperCase() === "FWS") {
           conditions.push("title LIKE ?");
           params.push(`FWS:%`);
