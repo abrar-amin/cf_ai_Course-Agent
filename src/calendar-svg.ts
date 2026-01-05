@@ -92,7 +92,7 @@ function generateTimeGrid(config: CalendarConfig): string {
       config.headerHeight + (hour - config.startHour) * config.hourHeight;
     const timeLabel = formatHourLabel(hour);
 
-    grid += `<text x="10" y="${y + 5}" class="time-text">${timeLabel}</text>`;
+    grid += `<text x="10" y="${y + 15}" class="time-text">${timeLabel}</text>`;
     grid += `<line x1="${config.timeColumnWidth}" y1="${y}" x2="${config.width}" y2="${y}" stroke="#e2e8f0" stroke-width="1"/>`;
   }
 

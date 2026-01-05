@@ -47,6 +47,7 @@
   "observability": {
     "enabled": true
   },
+  "workers_dev": true,
   "routes": [
     {
       "pattern": "courseagent.abraramin.dev",
