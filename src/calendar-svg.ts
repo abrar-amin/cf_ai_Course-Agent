@@ -123,9 +123,24 @@ function parseCourseMeetings(courses: any[]): Map<string, CourseBlock[]> {
     dayMap.set(day, []);
   }
 
-  courses.forEach((course, courseIdx) => {
+  // Create a mapping of unique courses to color indices
+  // All sections of the same course (LEC, DIS, LAB) get the same color
+  const courseColorMap = new Map<string, string>();
+  const uniqueCourses: string[] = [];
+
+  courses.forEach((course) => {
+    const courseKey = `${course.subject} ${course.catalog_nbr}`;
+    if (!courseColorMap.has(courseKey)) {
+      const colorIdx = uniqueCourses.length;
+      courseColorMap.set(courseKey, COLORS[colorIdx % COLORS.length]);
+      uniqueCourses.push(courseKey);
+    }
+  });
+
+  courses.forEach((course) => {
     const meetings = JSON.parse(course.meetings) as string[];
-    const color = COLORS[courseIdx % COLORS.length];
+    const courseKey = `${course.subject} ${course.catalog_nbr}`;
+    const color = courseColorMap.get(courseKey)!;
 
     meetings.forEach((meeting) => {
       const parts = meeting.split(" ");
@@ -139,7 +154,7 @@ function parseCourseMeetings(courses: any[]): Map<string, CourseBlock[]> {
         if (DAYS.includes(dayCode)) {
           const blocks = dayMap.get(dayCode) || [];
           blocks.push({
-            course: `${course.subject} ${course.catalog_nbr}`,
+            course: courseKey,
             title: course.title,
             startTime,
             endTime,

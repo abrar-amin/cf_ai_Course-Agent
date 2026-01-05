@@ -1,4 +1,4 @@
-#  🍎📚🧠🤖 Cornell Course Agent 🍎📚🧠🤖
+# 🍎📚🧠🤖 Cornell Course Agent 🍎📚🧠🤖
 
 An AI-powered course scheduling assistant for Cornell University students. Built with Cloudflare Workers, D1, Vectorize, and Workers AI.
 
@@ -6,22 +6,16 @@ Access at: [Here!](https://courseagent.abraramin.dev)
 
 <img width="383" height="786" alt="image" src="https://github.com/user-attachments/assets/29290a0d-e809-4a98-9228-7c099bd84182" />
 
-
-
-
 <img width="383" height="779" alt="image" src="https://github.com/user-attachments/assets/f201edff-3daa-49b5-9c66-8cc5c8d71970" />
-
-
-
 
 ## Features
 
 - **Semantic Course Search** - Natural language search powered by Cloudflare Vectorize embeddings
-- **Visual Calendar** -  Schedule visualization 
+- **Visual Calendar** - Schedule visualization
 - **Conflict Detection** - Automatic detection of time conflicts between courses
 - **Advanced Filtering** - Search by subject, credits, instructor, distribution requirements, and more
 - **AI Chat Interface** - Natural conversation with GPT-4 for course recommendations
-=- **Real-time Updates** - Streaming AI responses and instant schedule updates
+  =- **Real-time Updates** - Streaming AI responses and instant schedule updates
 
 ## Tech Stack
 
@@ -87,6 +81,7 @@ node scripts/upload-courses.js
 ```
 
 This script will:
+
 - Parse course data from JSON
 - Generate embeddings using Workers AI
 - Upload to D1 and Vectorize
@@ -102,14 +97,18 @@ npm start
 The application uses two main tables:
 
 ### `courses` Table
+
 Stores course information including:
+
 - Course metadata (subject, catalog number, title, credits)
 - Meeting times, instructors, location
 - Distribution requirements, grading basis
 - Text embeddings for semantic search
 
 ### `user_schedules` Table
+
 Stores user's selected courses:
+
 - User ID (from Durable Object)
 - Course ID reference
 - Optional notes
@@ -154,12 +153,14 @@ The chat agent has access to these tools:
 ## Architecture
 
 ### Semantic Search Flow
+
 1. User query → Workers AI (bge-base-en-v1.5) → Query embedding
 2. Vectorize similarity search → Top K course IDs
 3. D1 lookup → Full course details
 4. Return results to AI
 
 ### Schedule Management
+
 1. User selects course via chat
 2. Tool adds to `user_schedules` table
 3. Conflict detection runs against existing courses
@@ -168,6 +169,7 @@ The chat agent has access to these tools:
 6. Markdown image returned to user
 
 ### User Sessions
+
 - Each browser session gets a unique Durable Object ID
 - Schedules persist per session (not across browser refreshes)
 - To add persistent users, implement localStorage-based user IDs
@@ -177,6 +179,7 @@ The chat agent has access to these tools:
 Try these example queries with the AI assistant:
 
 ### Course Search
+
 ```
 "Find machine learning courses"
 "Show me CS classes about algorithms"
@@ -187,6 +190,7 @@ Try these example queries with the AI assistant:
 ```
 
 ### Course Details
+
 ```
 "Tell me more about CS 2110"
 "What are the meeting times for MATH 1920?"
@@ -195,6 +199,7 @@ Try these example queries with the AI assistant:
 ```
 
 ### Schedule Management
+
 ```
 "Add CS 2110 to my schedule"
 "Show my schedule"
@@ -205,6 +210,7 @@ Try these example queries with the AI assistant:
 ```
 
 ### Advanced Filtering
+
 ```
 "Find 4-credit CS courses"
 "Show me classes that meet on Monday and Wednesday"
@@ -214,6 +220,7 @@ Try these example queries with the AI assistant:
 ```
 
 ### Natural Conversation
+
 ```
 "I need a programming class for beginners"
 "What's a good follow-up to CS 1110?"

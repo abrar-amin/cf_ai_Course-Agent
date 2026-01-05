@@ -84,7 +84,7 @@ export default function Chat() {
   const agent = useAgent({
     // Pass userId to route to user-specific Durable Object
     agent: "chat",
-    name: userId  // 'name' parameter specifies the DO instance
+    name: userId // 'name' parameter specifies the DO instance
   });
 
   const [agentInput, setAgentInput] = useState("");
