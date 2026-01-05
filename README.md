@@ -1,4 +1,4 @@
-#  Cornell Course Agent
+#  🍎📚🧠🤖 Cornell Course Agent 🍎📚🧠🤖
 
 An AI-powered course scheduling assistant for Cornell University students. Built with Cloudflare Workers, D1, Vectorize, and Workers AI.
 
