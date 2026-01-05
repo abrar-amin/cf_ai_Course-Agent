@@ -37,6 +37,7 @@ Access at: [Here!](https://courseagent.abraramin.dev)
 - Cloudflare account with Workers subscription
 - OpenAI API key
 - Node.js 18+ and npm
+- Cornell Course Roster Information
 
 ## Quick Start (Borrowed from Cloudflare Agents Quick Start)
 
