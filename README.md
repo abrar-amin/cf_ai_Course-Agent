@@ -172,7 +172,55 @@ The chat agent has access to these tools:
 - Schedules persist per session (not across browser refreshes)
 - To add persistent users, implement localStorage-based user IDs
 
+## Sample Commands
 
+Try these example queries with the AI assistant:
+
+### Course Search
+```
+"Find machine learning courses"
+"Show me CS classes about algorithms"
+"What intro programming courses are available?"
+"Search for courses with Professor Foster"
+"Find 3-credit classes on Tuesdays and Thursdays"
+"Show me courses that fulfill the MQR distribution requirement"
+```
+
+### Course Details
+```
+"Tell me more about CS 2110"
+"What are the meeting times for MATH 1920?"
+"Who teaches INFO 1998?"
+"Show me all sections of CS 3110"
+```
+
+### Schedule Management
+```
+"Add CS 2110 to my schedule"
+"Show my schedule"
+"What classes am I taking?"
+"Remove MATH 1920 from my schedule"
+"Check my schedule for conflicts"
+"Add the course we just discussed"
+```
+
+### Advanced Filtering
+```
+"Find 4-credit CS courses"
+"Show me classes that meet on Monday and Wednesday"
+"What courses are taught by Muhlberger?"
+"Find upper-level MATH courses"
+"Show me seminars in the Engineering college"
+```
+
+### Natural Conversation
+```
+"I need a programming class for beginners"
+"What's a good follow-up to CS 1110?"
+"Help me find an easy 3-credit elective"
+"I'm interested in AI and data science, what should I take?"
+"Can you recommend courses for a CS major?"
+```
 
 ## Acknowledgments
 
