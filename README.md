@@ -21,8 +21,7 @@ Access at: [Here!](https://courseagent.abraramin.dev)
 - **Conflict Detection** - Automatic detection of time conflicts between courses
 - **Advanced Filtering** - Search by subject, credits, instructor, distribution requirements, and more
 - **AI Chat Interface** - Natural conversation with GPT-4 for course recommendations
-- **Dark/Light Theme** - Modern, responsive UI with theme switching
-- **Real-time Updates** - Streaming AI responses and instant schedule updates
+=- **Real-time Updates** - Streaming AI responses and instant schedule updates
 
 ## Tech Stack
 
