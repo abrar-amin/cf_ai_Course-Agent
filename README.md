@@ -231,5 +231,5 @@ Try these example queries with the AI assistant:
 
 ## Acknowledgments
 
-- Built with [Cloudflare Agents](https://developers.cloudflare.com/agents/)
+- Built with [Cloudflare Agents](https://developers.cloudflare.com/agents/) and the Cloudflare Agents Starter Kit
 - Course data from Cornell University Class Roster API
