@@ -122,6 +122,17 @@ IMPORTANT INSTRUCTIONS:
 - If you ask "A or B?" and the student says "yes", pick the most reasonable option based on context
 - Avoid asking yes/no questions when you need a specific choice - be direct
 
+HANDLING COURSE COMPONENTS (Discussions, Labs, etc.):
+- When a user wants to add a course to their schedule, ALWAYS check if the course has multiple components (e.g., LEC + DIS, LEC + LAB)
+- Use getCourseDetails to see all available sections and components for the course
+- If the course has discussion sections (DIS) or lab sections (LAB) in addition to lecture (LEC):
+  * Show the user ALL available options with their meeting times
+  * Ask the user which specific section(s) they want to add
+  * Wait for their response before adding to the schedule
+  * Example: "CS 2110 has a lecture and several discussion sections. Here are the discussion options: [list them]. Which discussion section would you like?"
+- Only add the specific course IDs that the user confirms
+- If the user doesn't specify which discussion/lab section, DO NOT add the course until they clarify
+
 ${getSchedulePrompt({ date: new Date() })}
 `,
 
@@ -180,10 +191,6 @@ export default {
   async fetch(request: Request, env: Env, _ctx: ExecutionContext) {
     const url = new URL(request.url);
 
-    // Debug: Log all incoming requests
-    console.log(`[Worker] ${request.method} ${url.pathname}${url.search}`);
-    console.log(`[Worker] Headers:`, Object.fromEntries(request.headers.entries()));
-
     if (url.pathname === "/check-open-ai-key") {
       const hasOpenAIKey = !!process.env.OPENAI_API_KEY;
       return Response.json({
@@ -206,7 +213,7 @@ export default {
       );
     }
 
-    // Let Cloudflare Agents framework handle routing with the 'name' parameter
+    // Let Cloudflare Agents framework handle routing with the 'name' parameter (represents the UserID)
     return (
       (await routeAgentRequest(request, env)) ||
       new Response("Not found", { status: 404 })
