@@ -191,10 +191,14 @@ const advancedCourseSearch = tool({
       }
 
       if (distributionReq) {
-        // More precise matching - look for the exact attribute in the JSON array
-        // e.g., ["GLC-AS", "OTHER"] should match "GLC-AS" but not "DLG-AG"
-        conditions.push("attributes LIKE ?");
-        params.push(`%"${distributionReq}"%`);
+        // Since Cornell's API does not have FWS in the attributes field, we check to see if the course title has FWS in it. 
+        if (distributionReq.toUpperCase() === "FWS") {
+          conditions.push("title LIKE ?");
+          params.push(`FWS:%`);
+        } else {
+          conditions.push("attributes LIKE ?");
+          params.push(`%"${distributionReq}"%`);
+        }
       }
 
       if (catalogNbrStart) {

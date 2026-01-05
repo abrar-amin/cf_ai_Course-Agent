@@ -204,19 +204,26 @@ export default function Chat() {
                   <div className="bg-[#F48120]/10 text-[#F48120] rounded-full p-3 inline-flex">
                     <RobotIcon size={24} />
                   </div>
-                  <h3 className="font-semibold text-lg">Welcome to AI Chat</h3>
+                  <h3 className="font-semibold text-lg">Welcome to Cornell Course Scheduler</h3>
                   <p className="text-muted-foreground text-sm">
-                    Start a conversation with your AI assistant. Try asking
-                    about:
+                    I can help you find courses and build your schedule. Try asking:
                   </p>
                   <ul className="text-sm text-left space-y-2">
                     <li className="flex items-center gap-2">
                       <span className="text-[#F48120]">•</span>
-                      <span>Weather information for any city</span>
+                      <span>Show me CS courses about machine learning</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <span className="text-[#F48120]">•</span>
-                      <span>Local time in different locations</span>
+                      <span>Find FWS courses for next semester</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="text-[#F48120]">•</span>
+                      <span>What 2000-level math courses are available?</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="text-[#F48120]">•</span>
+                      <span>Check my schedule for conflicts</span>
                     </li>
                   </ul>
                 </div>
